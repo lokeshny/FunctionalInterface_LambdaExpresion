@@ -10,33 +10,32 @@ class UserDetails {
     Validator validate =  new Validator();
 
     /* Creating user details variables and making them private*/
-    private String F_Name;
-    private String L_Name;
+    private String fName;
+    private String lName;
     private String emailId;
+    private String number;
 
     /* Creating getters and setters for user details variables*/
 
     public String getfName() {
-        return F_Name;
+        return fName;
     }
-
     public void setfName(String fName) {
         // Validating fName
         if(validate.validateFirstName(fName)) {
-            this.F_Name = fName;
+            this.fName = fName;
         } else {
             System.out.println("Invalid fName");
         }
     }
 
     public String getlName() {
-        return L_Name;
+        return lName;
     }
-
     public void setlName(String lName) {
         // Checking lName
         if(validate.validateLastName(lName)) {
-            this.L_Name = lName;
+            this.lName = lName;
         } else {
             System.out.println("Invalid lName");
         }
@@ -45,7 +44,6 @@ class UserDetails {
     public String getEmailId() {
         return emailId;
     }
-
     public void setEmailId(String emailId) {
         // Checking emailId
         if(validate.validateEmailId(emailId)) {
@@ -54,18 +52,32 @@ class UserDetails {
             System.out.println("Invalid emailId");
         }
     }
+
+    public String getNumber() {
+        return number;
+    }
+    public void setNumber(String number) {
+        if(validate.validateNumber(number)) {
+            this.number = number;
+        } else {
+            System.out.println("Invalid number");
+        }
+    }
 }
+
 public class Main {
     public static void main(String[] args) {
         // Creating object of user details class
         UserDetails user = new UserDetails();
         // Calling methods
         user.setfName("Lokesh");
-        user.setlName("NY");
-        user.setEmailId("lokeshny97@gamil.com");
+        user.setlName("Loki");
+        user.setEmailId("lokeshny97@gmail.com");
+        user.setNumber("91 8277541892");
 
         System.out.println(user.getfName());
         System.out.println(user.getlName());
         System.out.println(user.getEmailId());
+        System.out.println(user.getNumber());
     }
 }
