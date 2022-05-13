@@ -46,8 +46,8 @@ public class Main {
         // Creating object of user details class
         UserDetails user = new UserDetails();
         // Calling methods
-        user.setfName("Sarvesh");
-        user.setlName("Pednekar");
+        user.setfName("Lokesh");
+        user.setlName("NY");
 
         System.out.println(user.getfName());
         System.out.println(user.getlName());
