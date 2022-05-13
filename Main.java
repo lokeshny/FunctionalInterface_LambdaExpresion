@@ -5,6 +5,8 @@
  * */
 package com.Bridgelab.FunctionalInterface;
 
+import java.sql.SQLOutput;
+
 class UserDetails {
     /* Creating object of validator class*/
     Validator validate =  new Validator();
@@ -14,6 +16,7 @@ class UserDetails {
     private String lName;
     private String emailId;
     private String number;
+    private String password;
 
     /* Creating getters and setters for user details variables*/
 
@@ -63,6 +66,17 @@ class UserDetails {
             System.out.println("Invalid number");
         }
     }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        // Checking password
+        if(validate.validatePassword(password)) {
+            this.password = password;
+        } else {
+            System.out.println("Invalid password");
+        }
+    }
 }
 
 public class Main {
@@ -74,10 +88,12 @@ public class Main {
         user.setlName("Loki");
         user.setEmailId("lokeshny97@gmail.com");
         user.setNumber("91 8277541892");
+        user.setPassword("Getpassword@97");
 
         System.out.println(user.getfName());
         System.out.println(user.getlName());
         System.out.println(user.getEmailId());
         System.out.println(user.getNumber());
+        System.out.println(user.getPassword());
     }
 }
