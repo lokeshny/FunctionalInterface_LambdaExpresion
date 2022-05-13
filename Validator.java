@@ -4,10 +4,10 @@ import java.util.regex.Pattern;
 
 /* Creating validator class to create and match regex pattern for user details*/
 public class Validator {
-    // Creating private variables for and storing regex pattern
+    // Creating private variables for and storing regex pattern.
     private final String FIRST_NAME_PATTERN = "^[A-Z][a-z]{2,}$";
     private final String LAST_NAME_PATTERN = "^[A-Z][a-z]{2,}$";
-    private final String EMAIL_PATTERN = "^[a-z0-9]+([._-][a-z0-9]+)?@[a-z]{2,5}[.][a-z]{2,3}([.][a-z]{2,3})?$";
+    private final String EMAIL_PATTERN = "^[a-z0-9]+([._+-][a-z0-9]+)?@[a-z0-9]{1,5}[.][a-z]{2,3}([.][a-z]{2,3})?$";
     private final String NUMBER_PATTERN = "^[0-9]{2}[\\s][0-9][0-9]{9}$";
     private final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([@#$%^&+=]?)(?=\\S+$).{8,20}$";
 
@@ -27,14 +27,14 @@ public class Validator {
         boolean result = Pattern.matches(EMAIL_PATTERN, email);
         return result;
     }
-    public boolean validateNumber(String email) {
-        boolean result = Pattern.matches(NUMBER_PATTERN, email);
+
+    public boolean validateNumber(String number) {
+        boolean result = Pattern.matches(NUMBER_PATTERN, number);
         return result;
     }
+
     public boolean validatePassword(String password) {
         boolean result = Pattern.matches(PASSWORD_PATTERN, password);
         return result;
     }
 }
-
-

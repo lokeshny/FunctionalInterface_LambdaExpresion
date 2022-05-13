@@ -5,8 +5,14 @@
  * */
 package com.Bridgelab.FunctionalInterface;
 
-import java.sql.SQLOutput;
+/* Creating custom exception class which extends exception */
+class InvalidUserDetailsException extends Exception {
+    public InvalidUserDetailsException(String message) {
+        super(message);
+    }
+}
 
+/* Creating pojo class for userDetails */
 class UserDetails {
     /* Creating object of validator class*/
     Validator validate =  new Validator();
@@ -23,58 +29,71 @@ class UserDetails {
     public String getfName() {
         return fName;
     }
-    public void setfName(String fName) {
+    public boolean setfName(String fName) throws InvalidUserDetailsException {
         // Validating fName
         if(validate.validateFirstName(fName)) {
             this.fName = fName;
+            System.out.println("Valid fName");
+            return true;
         } else {
-            System.out.println("Invalid fName");
+            // Throws an object of user defined exception
+            throw new InvalidUserDetailsException("Invalid fName");
         }
     }
 
     public String getlName() {
         return lName;
     }
-    public void setlName(String lName) {
+    public boolean setlName(String lName) throws InvalidUserDetailsException{
         // Checking lName
         if(validate.validateLastName(lName)) {
             this.lName = lName;
+            System.out.println("Valid lName");
+            return true;
         } else {
-            System.out.println("Invalid lName");
+            throw new InvalidUserDetailsException("Invalid lName");
         }
     }
 
     public String getEmailId() {
         return emailId;
     }
-    public void setEmailId(String emailId) {
+    public boolean setEmailId(String emailId) throws InvalidUserDetailsException {
         // Checking emailId
         if(validate.validateEmailId(emailId)) {
             this.emailId = emailId;
+            System.out.println("Valid emailId");
+            return true;
         } else {
-            System.out.println("Invalid emailId");
+            throw new InvalidUserDetailsException("Invalid emailId");
         }
     }
 
     public String getNumber() {
         return number;
     }
-    public void setNumber(String number) {
+    public boolean setNumber(String number) throws InvalidUserDetailsException{
+        // Checking mobile number
         if(validate.validateNumber(number)) {
             this.number = number;
+            System.out.println("Valid number");
+            return true;
         } else {
-            System.out.println("Invalid number");
+            throw new InvalidUserDetailsException("Invalid number");
         }
     }
+
     public String getPassword() {
         return password;
     }
-    public void setPassword(String password) {
+    public boolean setPassword(String password) throws InvalidUserDetailsException{
         // Checking password
         if(validate.validatePassword(password)) {
             this.password = password;
+            System.out.println("Valid password");
+            return true;
         } else {
-            System.out.println("Invalid password");
+            throw new InvalidUserDetailsException("Invalid password");
         }
     }
 }
@@ -84,11 +103,35 @@ public class Main {
         // Creating object of user details class
         UserDetails user = new UserDetails();
         // Calling methods
-        user.setfName("Lokesh");
-        user.setlName("Loki");
-        user.setEmailId("lokeshny97@gmail.com");
-        user.setNumber("91 8277541892");
-        user.setPassword("Getpassword@97");
+        try {
+            user.setfName("Lokesh");
+        } catch(InvalidUserDetailsException ex) {
+            System.out.println("Exception occured: " + ex);
+        }
+
+        try {
+            user.setlName("Loki");
+        } catch(InvalidUserDetailsException ex) {
+            System.out.println("Exception occured: " + ex);
+        }
+
+        try {
+            user.setEmailId("lokeshny@gmail.com");
+        } catch(InvalidUserDetailsException ex) {
+            System.out.println("Exception ocuured: " + ex);
+        }
+
+        try {
+            user.setNumber("91 8277541892");
+        } catch(InvalidUserDetailsException ex) {
+            System.out.println("Exception occured: " + ex);
+        }
+
+        try {
+            user.setPassword("Getpasswor@26");
+        } catch(InvalidUserDetailsException ex) {
+            System.out.println("Exception occured: " + ex);
+        }
 
         System.out.println(user.getfName());
         System.out.println(user.getlName());
